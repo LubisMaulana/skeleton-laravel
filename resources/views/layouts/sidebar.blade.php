@@ -22,14 +22,16 @@
                 </a>
             </li>
 
-            <li class="menu-label">Data Management</li>
-            <li class="{{ $page == 'Peserta' ? 'mm-active' : '' }}">
-                <a href="">
-                    <div class="parent-icon"><i class='lni lni-users'></i>
-                    </div>
-                    <div class="menu-title">Submissions</div>
-                </a>
-            </li>
+            @can('spv')
+                <li class="menu-label">Data Management</li>
+                <li class="{{ $page == 'Pengguna' ? 'mm-active' : '' }}">
+                    <a href="{{ route('users') }}">
+                        <div class="parent-icon"><i class='lni lni-users'></i>
+                        </div>
+                        <div class="menu-title">Pengguna</div>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 @endsection

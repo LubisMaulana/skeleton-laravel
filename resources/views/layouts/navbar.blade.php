@@ -141,25 +141,22 @@
                     <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-between header-logos h-100 w-100 p-1">
-                        <img src="{{ asset('/assets/images/logo.png') }}" alt="Danantara Indonesia"
-                            class="logo-header h-100">
-                    </div>
-                    @can('admin')
+                    @if (auth()->user())
                         <div class="user-box dropdown px-3 ms-auto">
                             <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('/assets/images/default.webp') }}" class="user-img" alt="user avatar">
+                                <img src="{{ asset('/assets/images/default.webp') }}" class="user-img"
+                                    alt="user avatar">
                                 <div class="user-info ps-3">
                                     <p class="user-name mb-0 text-primary">
-                                        {{ Illuminate\Support\Str::limit(auth()->guard('admin')->user()->name, 18) }}
+                                        {{ Illuminate\Support\Str::limit(auth()->user()->name, 18) }}
                                     </p>
-                                    <p class="designattion mb-0 text-primary">Administrator</p>
+                                    <p class="designattion mb-0 text-primary">{{ auth()->user()->role }}</p>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <form id="form-logout" class="d-none" action="{{ route('admin.logout') }}"
+                                    <form id="form-logout" class="d-none" action="{{ route('logout') }}"
                                         method="POST">
                                         @csrf
                                     </form>
@@ -170,7 +167,7 @@
                                 </li>
                             </ul>
                         </div>
-                    @endcan
+                    @endif
                 </nav>
             </div>
         </header>
