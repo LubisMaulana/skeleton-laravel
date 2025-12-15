@@ -12,10 +12,21 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
 });
 
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('home', function(){
-        return view('home',[
-            'page' => 'Home'
-        ]);
-    })->name('home');
+Route::middleware('CheckRole:OPR,SPV')->group(function () {
+    Route::get('home', [AppController::class, 'home'])->name('home');
+});
+
+Route::middleware('CheckRole:SPV')->group(function () {
+    Route::prefix('users')->group(function () {
+        Route::get('', [UserController::class, 'index'])->name('users');
+        Route::get('get-data', [UserController::class, 'getData'])->name('get.users');
+        Route::get('{id}', [UserController::class, 'show'])->name('users.show');
+        Route::post('add', [UserController::class, 'store'])->name('users.store');
+        Route::put('edit/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

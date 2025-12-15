@@ -1,17 +1,16 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSubmissionRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +21,10 @@ class StoreSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'     => 'required|string|string|max:255',
+            'role'     => 'required|string|in:OPR,SPV',
+            'email'    => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
         ];
     }
 }

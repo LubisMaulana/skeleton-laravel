@@ -39,7 +39,7 @@
     <div class="container card radius-10 p-4 mb-0">
         <div class="d-flex ps-0 gap-2 mb-4 justify-content-between pe-0">
             <div class="d-flex flex-wrap align-items-center w-100">
-                <div class="breadcrumb-title pe-3 text-primary">Management Dokumen</div>
+                <div class="breadcrumb-title pe-3 text-primary">{{ config('app.name') }}</div>
 
                 <div class="ps-3">
                     <nav aria-label="breadcrumb" style="font-size: 18px;">
