@@ -43,8 +43,8 @@
 
         const data = {
             name: $('#modalAdd #add_name').val(),
-            username: $('#modalAdd #add_email').val(),
-            password: $('#modalAdd #add_role').val(),
+            email: $('#modalAdd #add_email').val(),
+            role: $('#modalAdd #add_role').val(),
             password: $('#modalAdd #add_password').val(),
             password_confirmation: $('#modalAdd #add_password_confirmation').val(),
             _token: $('#modalAdd [name="_token"]').val(),
@@ -88,8 +88,8 @@
 
         const data = {
             name: $('#modalEdit #edit_name').val(),
-            username: $('#modalEdit #edit_email').val(),
-            username: $('#modalEdit #edit_role').val(),
+            email: $('#modalEdit #edit_email').val(),
+            role: $('#modalEdit #edit_role').val(),
             password: $('#modalEdit #edit_password').val(),
             password_confirmation: $('#modalEdit #edit_password_confirmation').val(),
             _method: 'PUT'

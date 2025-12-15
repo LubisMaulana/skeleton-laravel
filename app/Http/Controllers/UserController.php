@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -32,7 +34,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $data             = $request->validated();
         $data['password'] = Hash::make($data['password']);
